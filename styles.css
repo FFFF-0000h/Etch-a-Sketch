@@ -1,0 +1,36 @@
+/* Center the content on the page */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+/* Container for the grid, using Flexbox to arrange squares */
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 960px;
+    height: 960px;
+    border: 2px solid #333;
+}
+
+/* Style for each square in the grid */
+.square {
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+    border: 1px solid #ccc;
+    flex: 1 0 auto; /* Allows squares to grow and shrink as needed */
+    width: 60px; /* Initial width for 16x16 grid in a 960px container */
+    height: 60px; /* Initial height for 16x16 grid in a 960px container */
+}
+
+/* Style for the button */
+button {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
