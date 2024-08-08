@@ -22,13 +22,11 @@ function createGrid(squaresPerSide) {
         square.style.width = `${squareSize}px`; // Set the width of the square
         square.style.height = `${squareSize}px`; // Set the height of the square
         
-        // Initialize the square with a random color and darkness level
-        initializeSquare(square);
-
+        initializeSquare(square); // Initialize with random color
         // Add an event listener for the 'mouseenter' event to change the background color on hover
         square.addEventListener('mouseenter', () => {
-            darkenSquare(square); // Darken the square by 10%
-        });
+            darkenSquare(square);
+            });
         
         container.appendChild(square); // Append the square to the container
     }
@@ -39,6 +37,7 @@ function createGrid(squaresPerSide) {
  * @param {HTMLElement} square - The square element to initialize
  */
 function initializeSquare(square) {
+    // Generate random RGB values
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
