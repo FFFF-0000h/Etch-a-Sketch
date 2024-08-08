@@ -22,13 +22,47 @@ function createGrid(squaresPerSide) {
         square.style.width = `${squareSize}px`; // Set the width of the square
         square.style.height = `${squareSize}px`; // Set the height of the square
         
+        // Initialize the square with a random color and darkness level
+        initializeSquare(square);
+
         // Add an event listener for the 'mouseenter' event to change the background color on hover
         square.addEventListener('mouseenter', () => {
-            square.style.backgroundColor = 'blue'; // Change color to blue on hover
+            darkenSquare(square); // Darken the square by 10%
         });
         
         container.appendChild(square); // Append the square to the container
     }
+}
+
+/**
+ * Function to initialize a square with a random color and darkness level
+ * @param {HTMLElement} square - The square element to initialize
+ */
+function initializeSquare(square) {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    square.dataset.rgb = `${r},${g},${b}`; // Store the RGB values in a data attribute
+    square.dataset.darkness = 0; // Initialize the darkness level at 0%
+    square.style.backgroundColor = `rgb(${r},${g},${b})`; // Set the initial background color
+}
+
+function darkenSquare(square) {
+    // Get the current RGB values and darkness level from the data attributes
+    let [r, g, b] = square.dataset.rgb.split(',').map(Number);
+    let darkness = Number(square.dataset.darkness);
+
+    // Increase the darkness level by 10% (up to a maximum of 100%)
+    darkness = Math.min(darkness + 10, 100);
+    square.dataset.darkness = darkness;
+
+    // Calculate the new RGB values by reducing each color component proportionally to the darkness level
+    r = Math.floor(r * (1 - darkness / 100));
+    g = Math.floor(g * (1 - darkness / 100));
+    b = Math.floor(b * (1 - darkness / 100));
+    
+    // Set the new background color
+    square.style.backgroundColor = `rgb(${r},${g},${b})`;
 }
 
 // Add an event listener to the button to create a new grid when clicked
